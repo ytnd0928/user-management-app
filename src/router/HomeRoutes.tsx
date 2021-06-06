@@ -1,5 +1,10 @@
 //ここに"/"配下の3つの画面のルーティングを作成
-export const Homeroots = [
+
+import { Home } from "../components/pages/Home";
+import { Setting } from "../components/pages/Setting";
+import { UserManagement } from "../components/pages/UserManagement";
+
+export const homeRoutes = [
   {
     path: "/",
     exact: true,
