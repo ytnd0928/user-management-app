@@ -1,2 +1,3 @@
 # user-management-app
-Created with CodeSandbox
+Created with react and typeScript
+
