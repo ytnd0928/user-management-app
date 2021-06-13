@@ -8,12 +8,12 @@ export const Header: VFC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   //useCallBack is a not funcitonのエラー表記が出る
   const history = useHistory();
-  const onClickHome = useCallback(() => history.push("/home"), []);
+  const onClickHome = useCallback(() => history.push("/home"), [history]);
   const onClickUserManagement = useCallback(
     () => history.push("/user_management"),
-    []
+    [history]
   );
-  const onClickSetting = useCallback(() => history.push("/setting"), []);
+  const onClickSetting = useCallback(() => history.push("/setting"), [history]);
   return (
     <>
       <Flex
@@ -24,8 +24,16 @@ export const Header: VFC = memo(() => {
         justify="space-between"
         padding={{ base: 3, md: 5 }}
       >
-        <Flex align="center" as="a" mr={8} _hover={{ cursor: "pointer" }}>
-          <Heading as="h1" fontSize={{ base: "md", md: "lg" }}></Heading>
+        <Flex
+          align="center"
+          as="a"
+          mr={8}
+          _hover={{ cursor: "pointer" }}
+          onClick={onClickHome}
+        >
+          <Heading as="h1" fontSize={{ base: "md", md: "lg" }}>
+            ユーザー管理アプリ
+          </Heading>
         </Flex>
         <Flex
           alogn="center"
@@ -33,8 +41,8 @@ export const Header: VFC = memo(() => {
           flexGrow={2}
           display={{ base: "none", md: "flex" }}
         >
-          <Link>ユーザー一覧</Link>
-          <Link>設定</Link>
+          <Link onClick={onClickUserManagement}>ユーザー一覧</Link>
+          <Link onClick={onClickSetting}>設定</Link>
         </Flex>
         <MenuIconButton onOpen={onOpen} />
       </Flex>
