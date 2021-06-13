@@ -1,18 +1,5 @@
 import { memo, VFC } from "react";
-import {
-  Button,
-  Box,
-  Drawer,
-  DrawerBody,
-  DrawerContent,
-  DrawerOverlay,
-  Flex,
-  Heading,
-  IconButton,
-  Link,
-  useDisclosure
-} from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { Flex, Heading, Link, useDisclosure } from "@chakra-ui/react";
 import { MenuIconButton } from "../../atoms/button/MenuIconButton";
 
 import { MenuDrawer } from "../../molecules/MenuDrawer";
@@ -30,7 +17,7 @@ export const Header: VFC = memo(() => {
         padding={{ base: 3, md: 5 }}
       >
         <Flex align="center" as="a" mr={8} _hover={{ cursor: "pointer" }}>
-          <Heading as="h1" fontsize={{ base: "md", md: "lg" }}>
+          <Heading as="h1" fontSize={{ base: "md", md: "lg" }}>
             ユーザー管理アプリ
           </Heading>
         </Flex>
