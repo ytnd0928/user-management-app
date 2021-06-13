@@ -1,11 +1,19 @@
-import { memo, VFC } from "react";
+import { memo, useCallBack, VFC } from "react";
 import { Flex, Heading, Link, useDisclosure } from "@chakra-ui/react";
 import { MenuIconButton } from "../../atoms/button/MenuIconButton";
-
+import { useHistory } from "react-router-dom";
 import { MenuDrawer } from "../../molecules/MenuDrawer";
 
 export const Header: VFC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const history = useHistory();
+  const onClickHome = useCallBack(() => history.push("/home"), []);
+  const onClickUserManagement = useCallBack(
+    () => history.push("/user_management"),
+    []
+  );
+  const onClickSetting = useCallBack(() => history.push("/setting"), []);
   return (
     <>
       <Flex
