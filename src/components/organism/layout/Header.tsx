@@ -1,5 +1,5 @@
 import { useCallback, memo, VFC } from "react";
-import { Flex, Heading, Link, useDisclosure } from "@chakra-ui/react";
+import { Flex, Heading, Link, useDisclosure, Box } from "@chakra-ui/react";
 import { MenuIconButton } from "../../atoms/button/MenuIconButton";
 import { useHistory } from "react-router-dom";
 import { MenuDrawer } from "../../molecules/MenuDrawer";
@@ -10,10 +10,12 @@ export const Header: VFC = memo(() => {
   const history = useHistory();
   const onClickHome = useCallback(() => history.push("/home"), [history]);
   const onClickUserManagement = useCallback(
-    () => history.push("/user_management"),
+    () => history.push("/home/user_management"),
     [history]
   );
-  const onClickSetting = useCallback(() => history.push("/setting"), [history]);
+  const onClickSetting = useCallback(() => history.push("/home/setting"), [
+    history
+  ]);
   return (
     <>
       <Flex
@@ -41,8 +43,10 @@ export const Header: VFC = memo(() => {
           flexGrow={2}
           display={{ base: "none", md: "flex" }}
         >
-          <Link onClick={onClickUserManagement}>ユーザー一覧</Link>
-          <Link onClick={onClickSetting}>設定</Link>
+          <Box>
+            <Link onClick={onClickUserManagement}>users</Link>
+            <Link onClick={onClickSetting}>設定</Link>
+          </Box>
         </Flex>
         <MenuIconButton onOpen={onOpen} />
       </Flex>
