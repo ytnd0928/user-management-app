@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { axios } from "axios";
+import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
@@ -23,7 +23,7 @@ export const useAuth = () => {
           }
         })
         .catch(() => alert("ログインできません"))
-        .fainally(() => setLoading(false));
+        .finally(() => setLoading(false));
     },
     [history]
   );
