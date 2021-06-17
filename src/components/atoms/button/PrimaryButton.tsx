@@ -3,7 +3,7 @@ import { Button } from "@chakra-ui/react";
 
 type Props = {
   children: ReactNode;
-  //ローディング中はボタンをh活性にしておくUIの作成
+  //ローディング中はボタンを非活性にしておくUIの作成
   disabled?: boolean;
   loading?: boolean;
 
