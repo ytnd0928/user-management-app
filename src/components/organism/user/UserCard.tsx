@@ -28,10 +28,10 @@ export const UserCard: VFC<Props> = memo((props) => {
           alt={userName}
         />
         <Text fontSize="lg" fontWeight="bold">
-          noda
+          {userName}
         </Text>
         <Text fontSize="small" fontWeight="bold" color="gray">
-          NODACHAN
+          {fullName}
         </Text>
       </Stack>
     </Box>
