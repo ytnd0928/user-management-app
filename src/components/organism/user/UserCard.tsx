@@ -2,14 +2,21 @@ import { memo, VFC } from "react";
 import { Box, Stack, Image, Text } from "@chakra-ui/react";
 
 type Props = {
+  id: number;
   imageUrl: string;
   userName: string;
   fullName: string;
+  onClick: (id: number) => void;
 };
 
 export const UserCard: VFC<Props> = memo((props) => {
-  const { imageUrl, userName, fullName } = props;
+  const { id, imageUrl, userName, fullName, onClick } = props;
   return (
+    //onClickにid　を付与してどのユーザーなのかを区別する
+    //1どのユーザーが押されたかをonClickで認識する必要がある
+    //propsのonClickの引数にidとnumberを渡す
+    //引数を渡す場合は関数を生成してそこに引数を渡す
+
     <Box
       p={4}
       _hover={{ cursor: "pointer", opacity: 0.8 }}
@@ -18,6 +25,7 @@ export const UserCard: VFC<Props> = memo((props) => {
       bg="white"
       borderRadius="10px"
       shadow="md"
+      onClick={() => onClick(id)}
     >
       <Stack textAlign="center">
         <Image

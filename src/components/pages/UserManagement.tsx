@@ -1,6 +1,6 @@
 /* eslimt-disable react-hooks/exhoustive-deps */
 
-import { memo, useEffect, VFC } from "react";
+import { memo, useCallback, useEffect, VFC } from "react";
 import {
   Text,
   Image,
@@ -9,17 +9,29 @@ import {
   Wrap,
   WrapItem,
   Spinner,
-  Center
+  Center,
+  useDisclosure
 } from "@chakra-ui/react";
 import { UserCard } from "../organism/user/UserCard";
 import { useAllUsers } from "../../hooks/useAllUsers";
+import { UserDetailModal } from "../organism/user/UserDetailModal";
+import { useSelectUser } from "../../hooks/useSelectUser";
 
 export const UserManagement: VFC = memo(() => {
   //divタグの代わりとなるBoxを使用
   const { getUsers, users, loading } = useAllUsers();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { onSelectUser, selectedUser } = useSelectUser();
+
   //画面表示時にユーザーを取得していきたい。useEffectで関数を使ってから配列を指定して初期マウント時に１回だけ実行できるようにする
   //getUsersを指定, 初回の１回だけで良いのでeslimtもコメントアウトをしておく
   useEffect(() => getUsers(), []);
+
+  const onClickUser = useCallback((id: number) => {
+    onSelectUser({ id, users });
+    onOpen();
+  }, []);
+
   return (
     //ローディング時はぐるぐるのUIを実行したい
     <>
@@ -35,11 +47,14 @@ export const UserManagement: VFC = memo(() => {
                 imageUrl="https://source.unsplash.com/random"
                 userName={user.username}
                 fullName={user.name}
+                onClick={onClickUser}
+                id={user.id}
               />
             </WrapItem>
           ))}
         </Wrap>
       )}
+      <UserDetailModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 });
