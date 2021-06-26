@@ -23,6 +23,8 @@ export const UserManagement: VFC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { onSelectUser, selectedUser } = useSelectUser();
 
+  console.log(selectedUser);
+
   //画面表示時にユーザーを取得していきたい。useEffectで関数を使ってから配列を指定して初期マウント時に１回だけ実行できるようにする
   //getUsersを指定, 初回の１回だけで良いのでeslimtもコメントアウトをしておく
   useEffect(() => getUsers(), []);
