@@ -34,7 +34,7 @@ export const Header: VFC = memo(() => {
           onClick={onClickHome}
         >
           <Heading as="h1" fontSize={{ base: "md", md: "lg" }}>
-            ユーザー管理アプリ
+            ユーザー管理
           </Heading>
         </Flex>
         <Flex
